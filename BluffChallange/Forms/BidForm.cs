@@ -11,11 +11,20 @@ namespace BluffChallange.Forms
         {
             InitializeComponent();
             this.player = player;
+            for(int i = 0; i < player.DiceCount; i++)
+            {
+                numOfDices.Items.Add(i.ToString());
+                numOfDices.Text = i.ToString();
+                valueOfDice.Text = "star";
+            }
+            
         }
 
         private void bidButton_Click(object sender, EventArgs e)
         {
-
+            player.Bid = player.convertRolledDice(numOfDices.Text) * player.convertRolledDice(valueOfDice.Text);
+            
+            Close();
         }
     }
 }

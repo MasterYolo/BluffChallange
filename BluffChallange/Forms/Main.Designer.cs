@@ -119,7 +119,7 @@
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
-            this.Text = "Form1";
+            this.Text = "BluffChallange";
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
             this.ResumeLayout(false);

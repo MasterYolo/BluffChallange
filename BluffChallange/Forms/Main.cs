@@ -32,7 +32,9 @@ namespace BluffChallange
                     + i);
                 for(int j = 0; j < players[i].DiceCount; j++)
                 {
-                    sb.AppendLine(players[i].rollDice());
+                    Players[i].convertRolledDice(players[i].rollDice());
+
+                    sb.AppendLine(Players[i].rollDice());
 
                 }
             }
@@ -48,7 +50,6 @@ namespace BluffChallange
             }
             catch (NullReferenceException ex)
             {
-
                 MessageBox.Show("Please start the round before making a bid.");
             }
         }

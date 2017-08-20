@@ -76,11 +76,6 @@
             this.numOfDices.Name = "numOfDices";
             this.numOfDices.Size = new System.Drawing.Size(41, 21);
             this.numOfDices.TabIndex = 0;
-            this.numOfDices.Items.AddRange(new object[] {"1",
-            "2",
-            "3",
-            "4",
-            "5"});
             // 
             // valueOfDice
             // 
