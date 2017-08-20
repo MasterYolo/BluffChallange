@@ -5,11 +5,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
+/// <summary>
+/// For the challange that I started this project from
+/// http://honeypot.softwareskills.se/#/contest/55f67c9b92be260c0f8a62ac
+/// </summary>
 namespace BluffChallange
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
-        public Form1()
+        public Main()
         {
             InitializeComponent();
         }
@@ -29,10 +33,13 @@ namespace BluffChallange
                     sb.AppendLine(players[i].rollDice());
                 }
             }
-            
             GameOutput.Text = sb.ToString();
-            
         }
-        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            BluffChallange.Forms.BidForm bid = new BluffChallange.Forms.BidForm();
+            bid.Show();
+        }
     }
 }

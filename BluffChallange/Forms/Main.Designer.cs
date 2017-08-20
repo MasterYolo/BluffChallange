@@ -1,6 +1,6 @@
 ﻿namespace BluffChallange
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel = new System.Windows.Forms.Panel();
             this.numOfPlayerLabel = new System.Windows.Forms.Label();
             this.numOfPlayer = new System.Windows.Forms.ComboBox();
             this.roll = new System.Windows.Forms.Button();
             this.GameOutput = new System.Windows.Forms.RichTextBox();
+            this.callLiesButton = new System.Windows.Forms.Button();
+            this.makeABidButton = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.makeABidButton);
+            this.panel.Controls.Add(this.callLiesButton);
             this.panel.Controls.Add(this.numOfPlayerLabel);
             this.panel.Controls.Add(this.numOfPlayer);
             this.panel.Controls.Add(this.roll);
@@ -76,7 +80,7 @@
             this.roll.Name = "roll";
             this.roll.Size = new System.Drawing.Size(75, 23);
             this.roll.TabIndex = 1;
-            this.roll.Text = "Role dices";
+            this.roll.Text = "Start round";
             this.roll.UseVisualStyleBackColor = true;
             this.roll.Click += new System.EventHandler(this.roll_Click);
             // 
@@ -87,6 +91,25 @@
             this.GameOutput.Size = new System.Drawing.Size(576, 280);
             this.GameOutput.TabIndex = 0;
             this.GameOutput.Text = "";
+            // 
+            // callLiesButton
+            // 
+            this.callLiesButton.Location = new System.Drawing.Point(17, 21);
+            this.callLiesButton.Name = "callLiesButton";
+            this.callLiesButton.Size = new System.Drawing.Size(75, 23);
+            this.callLiesButton.TabIndex = 4;
+            this.callLiesButton.Text = "Call lies!";
+            this.callLiesButton.UseVisualStyleBackColor = true;
+            // 
+            // makeABidButton
+            // 
+            this.makeABidButton.Location = new System.Drawing.Point(98, 21);
+            this.makeABidButton.Name = "makeABidButton";
+            this.makeABidButton.Size = new System.Drawing.Size(75, 23);
+            this.makeABidButton.TabIndex = 5;
+            this.makeABidButton.Text = "Make a bid";
+            this.makeABidButton.UseVisualStyleBackColor = true;
+            this.makeABidButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
@@ -110,6 +133,8 @@
         private System.Windows.Forms.RichTextBox GameOutput;
         private System.Windows.Forms.ComboBox numOfPlayer;
         private System.Windows.Forms.Label numOfPlayerLabel;
+        private System.Windows.Forms.Button makeABidButton;
+        private System.Windows.Forms.Button callLiesButton;
     }
 }
 
