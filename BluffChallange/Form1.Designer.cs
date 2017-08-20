@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel = new System.Windows.Forms.Panel();
+            this.numOfPlayerLabel = new System.Windows.Forms.Label();
             this.numOfPlayer = new System.Windows.Forms.ComboBox();
             this.roll = new System.Windows.Forms.Button();
             this.GameOutput = new System.Windows.Forms.RichTextBox();
-            this.numOfPlayerLabel = new System.Windows.Forms.Label();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +47,15 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(582, 334);
             this.panel.TabIndex = 0;
+            // 
+            // numOfPlayerLabel
+            // 
+            this.numOfPlayerLabel.AutoSize = true;
+            this.numOfPlayerLabel.Location = new System.Drawing.Point(238, 27);
+            this.numOfPlayerLabel.Name = "numOfPlayerLabel";
+            this.numOfPlayerLabel.Size = new System.Drawing.Size(92, 13);
+            this.numOfPlayerLabel.TabIndex = 3;
+            this.numOfPlayerLabel.Text = "Number of players";
             // 
             // numOfPlayer
             // 
@@ -78,21 +88,13 @@
             this.GameOutput.TabIndex = 0;
             this.GameOutput.Text = "";
             // 
-            // numOfPlayerLabel
-            // 
-            this.numOfPlayerLabel.AutoSize = true;
-            this.numOfPlayerLabel.Location = new System.Drawing.Point(238, 27);
-            this.numOfPlayerLabel.Name = "numOfPlayerLabel";
-            this.numOfPlayerLabel.Size = new System.Drawing.Size(92, 13);
-            this.numOfPlayerLabel.TabIndex = 3;
-            this.numOfPlayerLabel.Text = "Number of players";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(578, 332);
             this.Controls.Add(this.panel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel.ResumeLayout(false);
