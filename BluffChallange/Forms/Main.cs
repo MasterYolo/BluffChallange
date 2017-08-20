@@ -30,14 +30,18 @@ namespace BluffChallange
             {
                 sb.AppendLine("Dices for player : "
                     + i);
-                for(int j = 0; j < players[i].DiceCount; j++)
+                Players[i].Dices = new List<string>();
+                for (int j = 0; j < players[i].DiceCount; j++)
                 {
+                    Players[i].Dices.Add(Players[i].rollDice());
                     Players[i].convertRolledDice(players[i].rollDice());
 
                     sb.AppendLine(Players[i].rollDice());
+                    
 
                 }
             }
+            
             GameOutput.Text = sb.ToString();
         }
 

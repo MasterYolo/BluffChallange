@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BluffChallange.Model
 {
@@ -14,9 +11,16 @@ namespace BluffChallange.Model
         public int DiceCount { get => diceCount; set => diceCount = value; }
         public int Bid { get => bid; set => bid = value; }
         public int Facevalue { get => facevalue; set => facevalue = value; }
+        public List<string> Dices { get => dices; set => dices = value; }
 
+        List<string> dices;
         int bid;
         int facevalue;
+
+        public Player()
+        {
+            dices = new List<string>();
+        }
 
         public int convertRolledDice(string faceValue)
         {
@@ -33,8 +37,10 @@ namespace BluffChallange.Model
 
         public string rollDice()
         {
+            
             Dice dice = new Dice();
             return dice.roll(random);
+
            
         }
     }
