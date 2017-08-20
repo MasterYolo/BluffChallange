@@ -17,13 +17,15 @@ namespace BluffChallange
         {
             InitializeComponent();
         }
+        List<Player> players;
+        public List<Player> Players { get => players; set => players = value; }
 
         private void roll_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
             BluffChallange.Controller.Controller controller = new BluffChallange.Controller.Controller();
             sb.AppendLine("Number of players : " + numOfPlayer.Text);
-            List<Player> players = controller.letPlayersRollDices(Convert.ToInt32(numOfPlayer.Text));
+            Players = controller.letPlayersRollDices(Convert.ToInt32(numOfPlayer.Text));
             for(int i = 0; i < Convert.ToInt32(numOfPlayer.Text);i++)
             {
                 sb.AppendLine("Dices for player : "
@@ -31,6 +33,7 @@ namespace BluffChallange
                 for(int j = 0; j < players[i].DiceCount; j++)
                 {
                     sb.AppendLine(players[i].rollDice());
+
                 }
             }
             GameOutput.Text = sb.ToString();
@@ -38,8 +41,16 @@ namespace BluffChallange
 
         private void button2_Click(object sender, EventArgs e)
         {
-            BluffChallange.Forms.BidForm bid = new BluffChallange.Forms.BidForm();
-            bid.Show();
+            try
+            {
+                    BluffChallange.Forms.BidForm bidForm = new BluffChallange.Forms.BidForm(Players[0]);
+                    bidForm.Show();
+            }
+            catch (NullReferenceException ex)
+            {
+
+                MessageBox.Show("Please start the round before making a bid.");
+            }
         }
     }
 }

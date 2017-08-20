@@ -13,6 +13,11 @@ namespace BluffChallange.Model
         public Player(Random random) => this.random = random;
 
         public int DiceCount { get => diceCount; set => diceCount = value; }
+        public int Bid { get => bid; set => bid = value; }
+        public int Facevalue { get => facevalue; set => facevalue = value; }
+
+        int bid;
+        int facevalue;
 
         public string rollDice()
         {

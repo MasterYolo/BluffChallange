@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel = new System.Windows.Forms.Panel();
+            this.makeABidButton = new System.Windows.Forms.Button();
+            this.callLiesButton = new System.Windows.Forms.Button();
             this.numOfPlayerLabel = new System.Windows.Forms.Label();
             this.numOfPlayer = new System.Windows.Forms.ComboBox();
             this.roll = new System.Windows.Forms.Button();
             this.GameOutput = new System.Windows.Forms.RichTextBox();
-            this.callLiesButton = new System.Windows.Forms.Button();
-            this.makeABidButton = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +51,25 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(582, 334);
             this.panel.TabIndex = 0;
+            // 
+            // makeABidButton
+            // 
+            this.makeABidButton.Location = new System.Drawing.Point(98, 21);
+            this.makeABidButton.Name = "makeABidButton";
+            this.makeABidButton.Size = new System.Drawing.Size(75, 23);
+            this.makeABidButton.TabIndex = 5;
+            this.makeABidButton.Text = "Make a bid";
+            this.makeABidButton.UseVisualStyleBackColor = true;
+            this.makeABidButton.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // callLiesButton
+            // 
+            this.callLiesButton.Location = new System.Drawing.Point(17, 21);
+            this.callLiesButton.Name = "callLiesButton";
+            this.callLiesButton.Size = new System.Drawing.Size(75, 23);
+            this.callLiesButton.TabIndex = 4;
+            this.callLiesButton.Text = "Call lies!";
+            this.callLiesButton.UseVisualStyleBackColor = true;
             // 
             // numOfPlayerLabel
             // 
@@ -92,33 +111,14 @@
             this.GameOutput.TabIndex = 0;
             this.GameOutput.Text = "";
             // 
-            // callLiesButton
-            // 
-            this.callLiesButton.Location = new System.Drawing.Point(17, 21);
-            this.callLiesButton.Name = "callLiesButton";
-            this.callLiesButton.Size = new System.Drawing.Size(75, 23);
-            this.callLiesButton.TabIndex = 4;
-            this.callLiesButton.Text = "Call lies!";
-            this.callLiesButton.UseVisualStyleBackColor = true;
-            // 
-            // makeABidButton
-            // 
-            this.makeABidButton.Location = new System.Drawing.Point(98, 21);
-            this.makeABidButton.Name = "makeABidButton";
-            this.makeABidButton.Size = new System.Drawing.Size(75, 23);
-            this.makeABidButton.TabIndex = 5;
-            this.makeABidButton.Text = "Make a bid";
-            this.makeABidButton.UseVisualStyleBackColor = true;
-            this.makeABidButton.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(578, 332);
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Form1";
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();

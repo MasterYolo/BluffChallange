@@ -30,36 +30,80 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BidForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.numOfDicesLabel = new System.Windows.Forms.Label();
+            this.bidButton = new System.Windows.Forms.Button();
+            this.numOfDices = new System.Windows.Forms.ComboBox();
+            this.valueOfDice = new System.Windows.Forms.ComboBox();
+            this.valueOfDiceLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.valueOfDiceLabel);
+            this.panel1.Controls.Add(this.valueOfDice);
+            this.panel1.Controls.Add(this.numOfDicesLabel);
+            this.panel1.Controls.Add(this.bidButton);
+            this.panel1.Controls.Add(this.numOfDices);
             this.panel1.Location = new System.Drawing.Point(1, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(247, 87);
             this.panel1.TabIndex = 0;
             // 
-            // comboBox1
+            // numOfDicesLabel
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(50, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(184, 21);
-            this.comboBox1.TabIndex = 0;
+            this.numOfDicesLabel.AutoSize = true;
+            this.numOfDicesLabel.Location = new System.Drawing.Point(-3, 15);
+            this.numOfDicesLabel.Name = "numOfDicesLabel";
+            this.numOfDicesLabel.Size = new System.Drawing.Size(84, 13);
+            this.numOfDicesLabel.TabIndex = 2;
+            this.numOfDicesLabel.Text = "Number of dices";
             // 
-            // button1
+            // bidButton
             // 
-            this.button1.Location = new System.Drawing.Point(99, 39);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Bid";
-            this.button1.UseVisualStyleBackColor = true;
+            this.bidButton.Location = new System.Drawing.Point(78, 53);
+            this.bidButton.Name = "bidButton";
+            this.bidButton.Size = new System.Drawing.Size(75, 23);
+            this.bidButton.TabIndex = 1;
+            this.bidButton.Text = "Bid";
+            this.bidButton.UseVisualStyleBackColor = true;
+            this.bidButton.Click += new System.EventHandler(this.bidButton_Click);
+            // 
+            // numOfDices
+            // 
+            this.numOfDices.FormattingEnabled = true;
+            this.numOfDices.Location = new System.Drawing.Point(87, 12);
+            this.numOfDices.Name = "numOfDices";
+            this.numOfDices.Size = new System.Drawing.Size(41, 21);
+            this.numOfDices.TabIndex = 0;
+            this.numOfDices.Items.AddRange(new object[] {"1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            // 
+            // valueOfDice
+            // 
+            this.valueOfDice.FormattingEnabled = true;
+            this.valueOfDice.Location = new System.Drawing.Point(196, 12);
+            this.valueOfDice.Name = "valueOfDice";
+            this.valueOfDice.Size = new System.Drawing.Size(39, 21);
+            this.valueOfDice.TabIndex = 3;
+            this.valueOfDice.Items.AddRange(new object[] {"1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "star"});
+            // 
+            // valueOfDiceLabel
+            // 
+            this.valueOfDiceLabel.AutoSize = true;
+            this.valueOfDiceLabel.Location = new System.Drawing.Point(155, 15);
+            this.valueOfDiceLabel.Name = "valueOfDiceLabel";
+            this.valueOfDiceLabel.Size = new System.Drawing.Size(34, 13);
+            this.valueOfDiceLabel.TabIndex = 4;
+            this.valueOfDiceLabel.Text = "Value";
             // 
             // BidForm
             // 
@@ -71,6 +115,7 @@
             this.Name = "BidForm";
             this.Text = "Bids";
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -78,7 +123,10 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button bidButton;
+        private System.Windows.Forms.ComboBox numOfDices;
+        private System.Windows.Forms.Label numOfDicesLabel;
+        private System.Windows.Forms.Label valueOfDiceLabel;
+        private System.Windows.Forms.ComboBox valueOfDice;
     }
 }
