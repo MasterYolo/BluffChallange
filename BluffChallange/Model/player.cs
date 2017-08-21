@@ -5,18 +5,18 @@ namespace BluffChallange.Model
 {
     public class Player
     {
-        private int diceCount = 6;
         Random random;
         public Player(Random random) => this.random = random;
-        public int DiceCount { get => diceCount; set => diceCount = value; }
         public int Bid { get => bid; set => bid = value; }
-        public int Facevalue { get => facevalue; set => facevalue = value; }
         public List<string> Dices { get => dices; set => dices = value; }
+        public int RoundScore { get => roundScore; set => roundScore = value; }
+        public int DiceCount { get => diceCount; set => diceCount = value; }
 
         List<string> dices;
+        int diceCount;
         int bid;
-        int facevalue;
-
+        int roundScore;
+        
         public Player()
         {
             dices = new List<string>();
@@ -24,15 +24,16 @@ namespace BluffChallange.Model
 
         public int convertRolledDice(string faceValue)
         {
+            int returnvalue = 0;
             if(faceValue.Equals("star"))
             {
-                Facevalue = 6;
+                returnvalue = 6;
             }
             else
             {
-                Facevalue = facevalue;
+                returnvalue = Convert.ToInt32(faceValue);
             }
-            return Facevalue;
+            return returnvalue;
         }
 
         public string rollDice()

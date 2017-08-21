@@ -16,33 +16,84 @@ namespace BluffChallange
         public Main()
         {
             InitializeComponent();
+            Players = controller.letPlayersRollDices(Convert.ToInt32(numOfPlayer.Text));
+
         }
+        static int roundCounter;
         List<Player> players;
+        BluffChallange.Controller.Controller controller = new BluffChallange.Controller.Controller();
+
         public List<Player> Players { get => players; set => players = value; }
 
         private void roll_Click(object sender, EventArgs e)
         {
+            
             StringBuilder sb = new StringBuilder();
-            BluffChallange.Controller.Controller controller = new BluffChallange.Controller.Controller();
+           
             sb.AppendLine("Number of players : " + numOfPlayer.Text);
-            Players = controller.letPlayersRollDices(Convert.ToInt32(numOfPlayer.Text));
-            for(int i = 0; i < Convert.ToInt32(numOfPlayer.Text);i++)
+           
+            Game game = new Game();
+            
+            
+
+            for (int i = 0; i < Convert.ToInt32(numOfPlayer.Text);i++)
             {
-                sb.AppendLine("Dices for player : "
+                sb.AppendLine("\nDices for player : "
                     + i);
+
                 Players[i].Dices = new List<string>();
-                for (int j = 0; j < players[i].DiceCount; j++)
+
+                if (roundCounter.Equals(0))
+                {
+                    Players[i].DiceCount = Convert.ToInt32(startingDiceCombobox.Text);
+
+                }
+                else
+                {
+                    Players[i].DiceCount = Players[i].Dices.Count;
+                }
+                    
+
+                for (int j = 0; j < Players[i].DiceCount; j++)
                 {
                     Players[i].Dices.Add(Players[i].rollDice());
                     Players[i].convertRolledDice(players[i].rollDice());
 
                     sb.AppendLine(Players[i].rollDice());
-                    
+                }
+                
+                if (Players[i].Dices.Count < 1)
+                {
+                    sb.AppendLine("player : " + i + " has no dices left");
+                }
+
+                game.counRoundScore(Players[i]);
+
+                sb.AppendLine("Player " + i + ". Round score : " + players[i].RoundScore);
+                sb.AppendLine();
+
+            }
+            for(int i = 0; i < Players.Count-1;i++)
+            {
+                if(Players[i].RoundScore < Players[i + 1].RoundScore)
+                {
+                    sb.AppendLine("Player : " + i+1 + " Has won the round");
+                    Players[i].DiceCount -= 1;
+                }
+                else if(Players[i].RoundScore.Equals(Players[i+1].RoundScore))
+                {
+                    sb.AppendLine("It's a tie");
+                }
+                else
+                {
+                    sb.AppendLine("Player : " + i + " Has won the round");
+                    Players[i + 1].DiceCount -= 1;
 
                 }
             }
-            
+            game.compareScores(Players);
             GameOutput.Text = sb.ToString();
+            roundCounter += 1;
         }
 
         private void button2_Click(object sender, EventArgs e)

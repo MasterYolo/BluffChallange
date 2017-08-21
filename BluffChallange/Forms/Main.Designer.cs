@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel = new System.Windows.Forms.Panel();
+            this.startingDiceLabel = new System.Windows.Forms.Label();
+            this.startingDiceCombobox = new System.Windows.Forms.ComboBox();
             this.makeABidButton = new System.Windows.Forms.Button();
             this.callLiesButton = new System.Windows.Forms.Button();
             this.numOfPlayerLabel = new System.Windows.Forms.Label();
@@ -41,6 +43,8 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.startingDiceLabel);
+            this.panel.Controls.Add(this.startingDiceCombobox);
             this.panel.Controls.Add(this.makeABidButton);
             this.panel.Controls.Add(this.callLiesButton);
             this.panel.Controls.Add(this.numOfPlayerLabel);
@@ -52,9 +56,34 @@
             this.panel.Size = new System.Drawing.Size(582, 334);
             this.panel.TabIndex = 0;
             // 
+            // startingDiceLabel
+            // 
+            this.startingDiceLabel.AutoSize = true;
+            this.startingDiceLabel.Location = new System.Drawing.Point(160, 27);
+            this.startingDiceLabel.Name = "startingDiceLabel";
+            this.startingDiceLabel.Size = new System.Drawing.Size(67, 13);
+            this.startingDiceLabel.TabIndex = 7;
+            this.startingDiceLabel.Text = "Dice number";
+            // 
+            // startingDiceCombobox
+            // 
+            this.startingDiceCombobox.FormattingEnabled = true;
+            this.startingDiceCombobox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.startingDiceCombobox.Location = new System.Drawing.Point(233, 23);
+            this.startingDiceCombobox.Name = "startingDiceCombobox";
+            this.startingDiceCombobox.Size = new System.Drawing.Size(31, 21);
+            this.startingDiceCombobox.TabIndex = 6;
+            this.startingDiceCombobox.Text = "6";
+            // 
             // makeABidButton
             // 
-            this.makeABidButton.Location = new System.Drawing.Point(98, 21);
+            this.makeABidButton.Location = new System.Drawing.Point(84, 22);
             this.makeABidButton.Name = "makeABidButton";
             this.makeABidButton.Size = new System.Drawing.Size(75, 23);
             this.makeABidButton.TabIndex = 5;
@@ -64,7 +93,7 @@
             // 
             // callLiesButton
             // 
-            this.callLiesButton.Location = new System.Drawing.Point(17, 21);
+            this.callLiesButton.Location = new System.Drawing.Point(3, 22);
             this.callLiesButton.Name = "callLiesButton";
             this.callLiesButton.Size = new System.Drawing.Size(75, 23);
             this.callLiesButton.TabIndex = 4;
@@ -74,7 +103,7 @@
             // numOfPlayerLabel
             // 
             this.numOfPlayerLabel.AutoSize = true;
-            this.numOfPlayerLabel.Location = new System.Drawing.Point(238, 27);
+            this.numOfPlayerLabel.Location = new System.Drawing.Point(270, 27);
             this.numOfPlayerLabel.Name = "numOfPlayerLabel";
             this.numOfPlayerLabel.Size = new System.Drawing.Size(92, 13);
             this.numOfPlayerLabel.TabIndex = 3;
@@ -87,7 +116,7 @@
             "2",
             "3",
             "4"});
-            this.numOfPlayer.Location = new System.Drawing.Point(346, 24);
+            this.numOfPlayer.Location = new System.Drawing.Point(368, 24);
             this.numOfPlayer.Name = "numOfPlayer";
             this.numOfPlayer.Size = new System.Drawing.Size(121, 21);
             this.numOfPlayer.TabIndex = 2;
@@ -135,6 +164,8 @@
         private System.Windows.Forms.Label numOfPlayerLabel;
         private System.Windows.Forms.Button makeABidButton;
         private System.Windows.Forms.Button callLiesButton;
+        private System.Windows.Forms.Label startingDiceLabel;
+        private System.Windows.Forms.ComboBox startingDiceCombobox;
     }
 }
 
