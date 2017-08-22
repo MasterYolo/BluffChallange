@@ -121,6 +121,7 @@
             this.numOfPlayer.Size = new System.Drawing.Size(121, 21);
             this.numOfPlayer.TabIndex = 2;
             this.numOfPlayer.Text = "2";
+            this.numOfPlayer.SelectedIndexChanged += new System.EventHandler(this.numOfPlayer_SelectedIndexChanged);
             // 
             // roll
             // 

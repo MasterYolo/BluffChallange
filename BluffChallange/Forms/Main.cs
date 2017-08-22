@@ -18,7 +18,7 @@ namespace BluffChallange
         public Main()
         {
             InitializeComponent();
-            Players = controller.letPlayersRollDices(Convert.ToInt32(numOfPlayer.Text));
+            players = controller.letPlayersRollDices(Convert.ToInt32(numOfPlayer.Text));
 
         }
         static int roundCounter;
@@ -34,46 +34,47 @@ namespace BluffChallange
         /// <param name="e">An event object</param>
         private void roll_Click(object sender, EventArgs e)
         {
-            
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Number of players : " + numOfPlayer.Text);
             Game game = new Game();
+
             for (int i = 0; i < Convert.ToInt32(numOfPlayer.Text);i++)
             {
                 sb.AppendLine("\nDices for player : "
                     + i);
-                Players[i].Dices = new List<string>();
-
+                players[i].Dices = new List<string>();
                 //If it is the first round of a game
                 if (roundCounter.Equals(0))
                 {
 
-                    Players[i].DiceCount = Convert.ToInt32(startingDiceCombobox.Text);
+                    players[i].DiceCount = Convert.ToInt32(startingDiceCombobox.Text);
+                    numOfPlayer.Enabled = false;
 
                 }
-                for (int j = 0; j < Players[i].DiceCount; j++)
+                for (int j = 0; j < players[i].DiceCount; j++)
                 {
-                    Players[i].Dices.Add(Players[i].rollDice());
-                    Players[i].convertRolledDice(players[i].rollDice());
+                    players[i].Dices.Add(players[i].rollDice());
+                    players[i].convertRolledDice(players[i].rollDice());
 
-                    sb.AppendLine(Players[i].rollDice());
+                    sb.AppendLine(players[i].rollDice());
                 }
-                                if (Players[i].Dices.Count < 1)
+                if (players[i].Dices.Count < 1)
                 {
                     sb.AppendLine("player : " + i + " has no dices left");
+                    numOfPlayer.Enabled = true;
                 }
-                game.countRoundScore(Players[i]);
+                game.countRoundScore(players[i]);
                 sb.AppendLine("Player " + i + ". Round score : " + players[i].RoundScore);
                 sb.AppendLine();
             }
-            for (int i = 0; i < Players.Count-1;i++)
+            for (int i = 0; i < players.Count-1;i++)
             {
-                if(Players[i].RoundScore < Players[i + 1].RoundScore)
+                if(players[i].RoundScore < players[i + 1].RoundScore)
                 {
                     sb.AppendLine("Player : " + (i+1) + " Has won the round");
 
                 }
-                else if(Players[i].RoundScore.Equals(Players[i+1].RoundScore))
+                else if(players[i].RoundScore.Equals(players[i+1].RoundScore))
                 {
                     sb.AppendLine("It's a tie");
 
@@ -83,7 +84,7 @@ namespace BluffChallange
                     sb.AppendLine("Player : " + i + " Has won the round");
                 }
             }
-            game.compareScores(Players);
+            game.compareScores(players);
             GameOutput.Text = sb.ToString();
             roundCounter += 1;   
         }
@@ -96,13 +97,23 @@ namespace BluffChallange
         {
             try
             {
-                    BluffChallange.Forms.BidForm bidForm = new BluffChallange.Forms.BidForm(Players[0]);
+                    BluffChallange.Forms.BidForm bidForm = new BluffChallange.Forms.BidForm(players[0]);
                     bidForm.Show();
             }
             catch (NullReferenceException ex)
             {
                 MessageBox.Show("Please start the round before making a bid.");
             }
+        }
+
+        /// <summary>
+        ///numOfPlayer_SelectedIndexChanged - Fixes the bugg to edit to more playerss
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void numOfPlayer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             Players = controller.letPlayersRollDices(Convert.ToInt32(numOfPlayer.Text));
         }
     }
 }

@@ -10,7 +10,6 @@ namespace BluffChallange.Model
     /// </summary>
     public class Player
     {
-        Random random;
         public Player(Random random) => this.random = random;
         public int Bid { get => bid; set => bid = value; }
         public List<string> Dices { get => dices; set => dices = value; }
@@ -21,6 +20,8 @@ namespace BluffChallange.Model
         int diceCount;
         int bid;
         int roundScore;
+        Random random;
+
         /// <summary>
         /// creates a new List of strings each time the player object is created.
         /// </summary>
@@ -48,18 +49,14 @@ namespace BluffChallange.Model
             }
             return returnvalue;
         }
-
         /// <summary>
         /// rollDice - Cretes a new random value for the dice with the singelton random object.
         /// </summary>
         /// <returns></returns>
         public string rollDice()
         {
-            
             Dice dice = new Dice();
             return dice.roll(random);
-
-           
         }
     }
 }
