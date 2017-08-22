@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace BluffChallange.Model
 {
+    /// <summary>
+    /// Player - 
+    /// The player class. This class represents a player.
+    /// The class is using properties to set values.
+    /// </summary>
     public class Player
     {
         Random random;
@@ -16,12 +21,20 @@ namespace BluffChallange.Model
         int diceCount;
         int bid;
         int roundScore;
-        
+        /// <summary>
+        /// creates a new List of strings each time the player object is created.
+        /// </summary>
         public Player()
         {
             dices = new List<string>();
         }
 
+        /// <summary>
+        /// convertRolledDice - 
+        /// Converts the "Wild cards" to a value.
+        /// </summary>
+        /// <param name="faceValue">The value of a dice.</param>
+        /// <returns></returns>
         public int convertRolledDice(string faceValue)
         {
             int returnvalue = 0;
@@ -36,6 +49,10 @@ namespace BluffChallange.Model
             return returnvalue;
         }
 
+        /// <summary>
+        /// rollDice - Cretes a new random value for the dice with the singelton random object.
+        /// </summary>
+        /// <returns></returns>
         public string rollDice()
         {
             

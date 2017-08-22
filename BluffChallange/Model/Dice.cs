@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace BluffChallange.Model
 {
+    /// <summary>
+    /// Dice - Represents a dice.
+    /// </summary>
     public class Dice
     {
         List<string> sides = new List<string>{ "1", "2", "3", "4", "5", "star" };
         public List<string> Sides { get => sides; set => this.sides = value; }
+        /// <summary>
+        /// Picks a random value from 1 to star.
+        /// </summary>
+        /// <param name="random">A singelton random object</param>
+        /// <returns></returns>
         public string roll(Random random)
         {
            

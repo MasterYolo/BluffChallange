@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace BluffChallange.Forms
 {
+    /// <summary>
+    /// BidForm handles the action when the player is pressing the "Make bid" button
+    /// </summary>
     public partial class BidForm : Form
     {
         Player player;
@@ -20,6 +23,11 @@ namespace BluffChallange.Forms
             
         }
 
+        /// <summary>
+        /// The bid button to make a bid. 
+        /// </summary>
+        /// <param name="sender">An sender object</param>
+        /// <param name="e">An EventArgs object</param>
         private void bidButton_Click(object sender, EventArgs e)
         {
             if(Convert.ToInt32(numOfDices.Text) > 1 && Convert.ToInt32(valueOfDice.Text) > 1)

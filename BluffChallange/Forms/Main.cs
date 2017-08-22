@@ -11,6 +11,9 @@ using System.Windows.Forms;
 /// </summary>
 namespace BluffChallange
 {
+    /// <summary>
+    /// The main form for the Bluff challange.
+    /// </summary>
     public partial class Main : Form
     {
         public Main()
@@ -25,35 +28,30 @@ namespace BluffChallange
 
         public List<Player> Players { get => players; set => players = value; }
 
+        /// <summary>
+        /// roll_Click - Starts the round
+        /// </summary>
+        /// <param name="sender">A sender object</param>
+        /// <param name="e">An event object</param>
         private void roll_Click(object sender, EventArgs e)
         {
             
             StringBuilder sb = new StringBuilder();
-           
             sb.AppendLine("Number of players : " + numOfPlayer.Text);
-           
             Game game = new Game();
-            
-            
-
             for (int i = 0; i < Convert.ToInt32(numOfPlayer.Text);i++)
             {
                 sb.AppendLine("\nDices for player : "
                     + i);
-
                 Players[i].Dices = new List<string>();
 
+                //If it is the first round of a game
                 if (roundCounter.Equals(0))
                 {
+
                     Players[i].DiceCount = Convert.ToInt32(startingDiceCombobox.Text);
 
                 }
-                else
-                {
-                    Players[i].DiceCount = Players[i].Dices.Count;
-                }
-                    
-
                 for (int j = 0; j < Players[i].DiceCount; j++)
                 {
                     Players[i].Dices.Add(Players[i].rollDice());
@@ -61,41 +59,40 @@ namespace BluffChallange
 
                     sb.AppendLine(Players[i].rollDice());
                 }
-                
-                if (Players[i].Dices.Count < 1)
+                                if (Players[i].Dices.Count < 1)
                 {
                     sb.AppendLine("player : " + i + " has no dices left");
                 }
-
-                game.counRoundScore(Players[i]);
-
+                game.countRoundScore(Players[i]);
                 sb.AppendLine("Player " + i + ". Round score : " + players[i].RoundScore);
                 sb.AppendLine();
-
             }
-            for(int i = 0; i < Players.Count-1;i++)
+            for (int i = 0; i < Players.Count-1;i++)
             {
                 if(Players[i].RoundScore < Players[i + 1].RoundScore)
                 {
-                    sb.AppendLine("Player : " + i+1 + " Has won the round");
-                    Players[i].DiceCount -= 1;
+                    sb.AppendLine("Player : " + (i+1) + " Has won the round");
+
                 }
                 else if(Players[i].RoundScore.Equals(Players[i+1].RoundScore))
                 {
                     sb.AppendLine("It's a tie");
+
                 }
                 else
                 {
                     sb.AppendLine("Player : " + i + " Has won the round");
-                    Players[i + 1].DiceCount -= 1;
-
                 }
             }
             game.compareScores(Players);
             GameOutput.Text = sb.ToString();
-            roundCounter += 1;
+            roundCounter += 1;   
         }
-
+        /// <summary>
+        /// Button to press if the player wants to make a bid.
+        /// </summary>
+        /// <param name="sender">A sender object</param>
+        /// <param name="e">An event object</param>
         private void button2_Click(object sender, EventArgs e)
         {
             try

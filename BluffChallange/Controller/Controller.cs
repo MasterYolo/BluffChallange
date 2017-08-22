@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace BluffChallange.Controller
 {
+    /// <summary>
+    /// Controller are used to communicate with the data layer.
+    /// </summary>
     public class Controller
     {
+        /// <summary>
+        /// Letting the player rolling the dices with the number of players.
+        /// </summary>
+        /// <param name="numOfPlayers">Number of players that plays the round.</param>
+        /// <returns>A List of players.</returns>
         public List<Player> letPlayersRollDices(int numOfPlayers)
         {
             List<Player> listOfPlayers = new List<Player>();
