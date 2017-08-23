@@ -43,6 +43,10 @@ namespace BluffChallange
                 sb.AppendLine("\nDices for player : "
                     + i);
                 players[i].Dices = new List<string>();
+                if(players[i].DiceCount == 0)
+                {
+
+                }
                 //If it is the first round of a game
                 if (roundCounter.Equals(0))
                 {
@@ -62,6 +66,10 @@ namespace BluffChallange
                 {
                     sb.AppendLine("player : " + i + " has no dices left");
                     Players.Remove(players[i]);
+                    if(players.Count.Equals(1))
+                    {
+                        //Victory
+                    }
                 }
                 game.countRoundScore(players[i]);
                 sb.AppendLine("Player " + i + ". Round score : " + players[i].RoundScore);
@@ -77,17 +85,25 @@ namespace BluffChallange
                         {
                             i++;
                             k++;
-                            if (players[i].RoundScore > players[k].RoundScore)
+                            //Player i has the most score
+                            if ((players[i].RoundScore > players[k].RoundScore) && (players[i].RoundScore > players[i - 1].RoundScore))
                             {
                                 sb.AppendLine("Player : " + i + " Has won the round");
                             }
-                            else if (players[i].RoundScore < players[k].RoundScore)
+                            //Player k has the most score.
+                            else if ((players[i].RoundScore < players[k].RoundScore) && (players[k].RoundScore > players[i - 1].RoundScore))
                             {
-                                sb.AppendLine("Player : " + i + " Has won the round");
+                                sb.AppendLine("Player : " + k + " Has won the round");
                             }
-                            else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                            //Tie between player i and player k. and the tie score is greater than the player (i-1) score.
+                            else if(players[i].RoundScore.Equals(players[k].RoundScore) && (players[k].RoundScore > players[i - 1].RoundScore))
                             {
                                 sb.AppendLine("It's a tie between player : " + i + " and " + k);
+                            }
+                            //Player i-1 has the most score.
+                            else
+                            {
+                                sb.AppendLine("Player : " + (i-1) + " Has won the round");
                             }
 
                         }
@@ -95,11 +111,11 @@ namespace BluffChallange
                         {
                             i++;
                             k++;
-                            if (players[i].RoundScore < players[k].RoundScore)
+                            if ((players[i].RoundScore < players[k].RoundScore) && (players[k].RoundScore > players[i - 1].RoundScore))
                             {
                                 sb.AppendLine("Player : " + k + " Has won the round");
                             }
-                            else if (players[i].RoundScore > players[k].RoundScore)
+                            else if ((players[i].RoundScore > players[k].RoundScore) && (players[i].RoundScore > players[i - 1].RoundScore))
                             {
                                 sb.AppendLine("Player : " + i + " Has won the round");
                             }
@@ -112,15 +128,11 @@ namespace BluffChallange
                         {
                             i++;
                             k++;
-                            if (players[i].RoundScore < players[k].RoundScore)
+                            if ((players[i].RoundScore < players[k].RoundScore) && (players[k].RoundScore > players[i - 1].RoundScore))
                             {
                                 sb.AppendLine("Player : " + k + " Has won the round");
                             }
-                            else if (players[i].RoundScore > players[k].RoundScore)
-                            {
-                                sb.AppendLine("Player : " + i + " Has won the round");
-                            }
-                            else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                            else if (players[i].RoundScore.Equals(players[k].RoundScore) && (players[i].RoundScore > players[i - 1].RoundScore))
                             {
                                 sb.AppendLine("It's a tie between player : " + i + " and " + k);
                             }
