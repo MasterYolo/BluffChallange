@@ -61,7 +61,7 @@ namespace BluffChallange
                 if (players[i].Dices.Count < 1)
                 {
                     sb.AppendLine("player : " + i + " has no dices left");
-                    numOfPlayer.Enabled = true;
+                    Players.Remove(players[i]);
                 }
                 game.countRoundScore(players[i]);
                 sb.AppendLine("Player " + i + ". Round score : " + players[i].RoundScore);
@@ -69,20 +69,81 @@ namespace BluffChallange
             }
             for (int i = 0; i < players.Count-1;i++)
             {
-                if(players[i].RoundScore < players[i + 1].RoundScore)
+                for (int k = i + 1; k < players.Count; k++)
                 {
-                    sb.AppendLine("Player : " + (i+1) + " Has won the round");
+                    if (players.Count > 2)
+                    {
+                        if (players[i].RoundScore > players[k].RoundScore)
+                        {
+                            i++;
+                            k++;
+                            if (players[i].RoundScore > players[k].RoundScore)
+                            {
+                                sb.AppendLine("Player : " + i + " Has won the round");
+                            }
+                            else if (players[i].RoundScore < players[k].RoundScore)
+                            {
+                                sb.AppendLine("Player : " + i + " Has won the round");
+                            }
+                            else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                            {
+                                sb.AppendLine("It's a tie between player : " + i + " and " + k);
+                            }
 
+                        }
+                        else if (players[i].RoundScore < players[k].RoundScore)
+                        {
+                            i++;
+                            k++;
+                            if (players[i].RoundScore < players[k].RoundScore)
+                            {
+                                sb.AppendLine("Player : " + k + " Has won the round");
+                            }
+                            else if (players[i].RoundScore > players[k].RoundScore)
+                            {
+                                sb.AppendLine("Player : " + i + " Has won the round");
+                            }
+                            else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                            {
+                                sb.AppendLine("It's a tie between player : " + i + " and " + k);
+                            }
+                        }
+                        else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                        {
+                            i++;
+                            k++;
+                            if (players[i].RoundScore < players[k].RoundScore)
+                            {
+                                sb.AppendLine("Player : " + k + " Has won the round");
+                            }
+                            else if (players[i].RoundScore > players[k].RoundScore)
+                            {
+                                sb.AppendLine("Player : " + i + " Has won the round");
+                            }
+                            else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                            {
+                                sb.AppendLine("It's a tie between player : " + i + " and " + k);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (players[i].RoundScore < players[k].RoundScore)
+                        {
+                            sb.AppendLine("Player : " + k + " Has won the round");
+                        }
+                        else if (players[i].RoundScore > players[k].RoundScore)
+                        {
+                            sb.AppendLine("Player : " + i + " Has won the round");
+                        }
+                        else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                        {
+                            sb.AppendLine("It's a tie between player : " + i + " and " + k);
+                        }
+                    }
                 }
-                else if(players[i].RoundScore.Equals(players[i+1].RoundScore))
-                {
-                    sb.AppendLine("It's a tie");
+              
 
-                }
-                else
-                {
-                    sb.AppendLine("Player : " + i + " Has won the round");
-                }
             }
             game.compareScores(players);
             GameOutput.Text = sb.ToString();

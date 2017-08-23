@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BluffChallange.Model
@@ -28,25 +29,112 @@ namespace BluffChallange.Model
         {
             for(int i = 0; i < players.Count-1; i++)
             {
-                if(players[i].RoundScore < players[i+1].RoundScore)
+                for (int k = i + 1; k < players.Count; k++)
                 {
-                    players[i].DiceCount -= 1;
-                    players[i].Dices.Take(players[i].Dices.Count - 1);
-                    players[i].RoundScore = 0;
-                    players[i + 1].RoundScore = 0;
-                }
-                else if(players[i].RoundScore.Equals(players[i+1].RoundScore))
-                {
-                    //If it is a tie. Just reset scores
-                    players[i].RoundScore = 0;
-                    players[i + 1].RoundScore = 0;
-                }
-                else
-                {
-                    players[i + 1].DiceCount -= 1;
-                    players[i + 1].Dices.Take(players[i].Dices.Count - 1);
-                    players[i].RoundScore = 0;
-                    players[i + 1].RoundScore = 0;
+
+                    if (players.Count > 2)
+                    {
+                        if (players[i].RoundScore > players[k].RoundScore)
+                        {
+                            i++;
+                            k++;
+                            if (players[i].RoundScore > players[k].RoundScore)
+                            {
+                                players[k].DiceCount -= 1;
+                                players[k].Dices.Take(players[i].Dices.Count - 1);
+                                players[i].RoundScore = 0;
+                                players[k].RoundScore = 0;
+                            }
+                            else if (players[i].RoundScore < players[k].RoundScore)
+                            {
+                                players[i].DiceCount -= 1;
+                                players[i].Dices.Take(players[i].Dices.Count - 1);
+                                players[i].RoundScore = 0;
+                                players[k].RoundScore = 0;
+                            }
+                            else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                            {
+                                //If it is a tie. Just reset scores
+                                players[i].RoundScore = 0;
+                                players[k].RoundScore = 0;
+                            }
+
+                        }
+                        else if (players[i].RoundScore < players[k].RoundScore)
+                        {
+                            i++;
+                            k++;
+                            if (players[i].RoundScore < players[k].RoundScore)
+                            {
+                                players[i].DiceCount -= 1;
+                                players[i].Dices.Take(players[i].Dices.Count - 1);
+                                players[i].RoundScore = 0;
+                                players[k].RoundScore = 0;
+                            }
+                            else if (players[i].RoundScore > players[k].RoundScore)
+                            {
+                                players[k].DiceCount -= 1;
+                                players[k].Dices.Take(players[i].Dices.Count - 1);
+                                players[i].RoundScore = 0;
+                                players[k].RoundScore = 0;
+                            }
+                            else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                            {
+                                //If it is a tie. Just reset scores
+                                players[i].RoundScore = 0;
+                                players[k].RoundScore = 0;
+                            }
+                        }
+                        else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                        {
+                            i++;
+                            k++;
+                            if (players[i].RoundScore < players[k].RoundScore)
+                            {
+                                players[i].DiceCount -= 1;
+                                players[i].Dices.Take(players[i].Dices.Count - 1);
+                                players[i].RoundScore = 0;
+                                players[k].RoundScore = 0;
+                            }
+                            else if (players[i].RoundScore > players[k].RoundScore)
+                            {
+                                players[k].DiceCount -= 1;
+                                players[k].Dices.Take(players[i].Dices.Count - 1);
+                                players[i].RoundScore = 0;
+                                players[k].RoundScore = 0;
+                            }
+                            else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                            {
+                                //If it is a tie. Just reset scores
+                                players[i].RoundScore = 0;
+                                players[k].RoundScore = 0;
+                            }
+                        }
+                    }
+                    //Player count less than three.
+                    else
+                    {
+                        if (players[i].RoundScore < players[k].RoundScore)
+                        {
+                            players[i].DiceCount -= 1;
+                            players[i].Dices.Take(players[i].Dices.Count - 1);
+                            players[i].RoundScore = 0;
+                            players[k].RoundScore = 0;
+                        }
+                        else if (players[i].RoundScore > players[k].RoundScore)
+                        {
+                            players[k].DiceCount -= 1;
+                            players[k].Dices.Take(players[i].Dices.Count - 1);
+                            players[i].RoundScore = 0;
+                            players[k].RoundScore = 0;
+                        }
+                        else if (players[i].RoundScore.Equals(players[k].RoundScore))
+                        {
+                            //If it is a tie. Just reset scores
+                            players[i].RoundScore = 0;
+                            players[k].RoundScore = 0;
+                        }
+                    }
                 }
             }
         }
