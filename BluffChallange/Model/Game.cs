@@ -23,7 +23,7 @@ namespace BluffChallange.Model
         }
         /// <summary>
         /// Compares the score of the players that playess the game.
-        /// TODO make the comparison with the more than 2 players valid.
+        /// TODO compare more than i+1 objects
         /// </summary>
         /// <param name="players">Object Player which is a class that holds the player object. </param>
         public void compareScores(List<Player> players)
@@ -34,100 +34,77 @@ namespace BluffChallange.Model
                 {
                     if (players.Count > 2)
                     {
+                        i++;
+                        k++;
+                        //Player k has the least score of the round.
+                        if ((players[i].RoundScore > players[k].RoundScore) && (players[k].RoundScore < players[i - 1].RoundScore))
+                        {
+                            players[k].DiceCount -= 1;
+                            players[k].Dices.Take(players[k].Dices.Count - 1);
+                            players[i - 1].RoundScore = 0;
+                            players[i].RoundScore = 0;
+                            players[k].RoundScore = 0;
+                        }
+                        //Player i has the least score of the round.
+                        else if ((players[i].RoundScore < players[k].RoundScore) && (players[i].RoundScore < players[i - 1].RoundScore))
+                        {
+                            players[i].DiceCount -= 1;
+                            players[i].Dices.Take(players[i].Dices.Count - 1);
+                            players[i - 1].RoundScore = 0;
+                            players[i].RoundScore = 0;
+                            players[k].RoundScore = 0;
+                        }
+                        //Player (i-1) has the least score of the round.
+                        else if ((players[i - 1].RoundScore < players[k].RoundScore) && (players[i - 1].RoundScore < players[i].RoundScore))
+                        {
+                            players[i - 1].DiceCount -= 1;
+                            players[i - 1].Dices.Take(players[i].Dices.Count - 1);
+                            players[i - 1].RoundScore = 0;
+                            players[i].RoundScore = 0;
+                            players[k].RoundScore = 0;
+                        }
+
+                        //K has the least amount of scores therefore remove a dice before reset.
                         if (players[i].RoundScore > players[k].RoundScore)
                         {
-                            i++;
-                            k++;
-                            //Player k has the least score of the round.
-                            if ((players[i].RoundScore > players[k].RoundScore) && (players[k].RoundScore < players[i - 1].RoundScore))
-                            {
-                                players[k].DiceCount -= 1;
-                                players[k].Dices.Take(players[k].Dices.Count - 1);
-                                players[i - 1].RoundScore = 0;
-                                players[i].RoundScore = 0;
-                                players[k].RoundScore = 0;
-                                Console.WriteLine();
+                            players[k].DiceCount -= 1;
+                            players[k].Dices.Take(players[k].Dices.Count - 1);
+                            players[i - 1].RoundScore = 0;
+                            players[i].RoundScore = 0;
+                            players[k].RoundScore = 0;
+                        }
+                        if (players[i].RoundScore.Equals(players[k].RoundScore))
+                        {
+                            //If it is a tie. Just reset scores
+                            players[i - 1].RoundScore = 0;
+                            players[i].RoundScore = 0;
+                            players[k].RoundScore = 0;
+                        }
+                        //players i has the least score of the round.
+                        if ((players[i].RoundScore < players[k].RoundScore) && (players[i].RoundScore < players[i - 1].RoundScore))
+                        {
+                            players[i].DiceCount -= 1;
+                            players[i].Dices.Take(players[i].Dices.Count - 1);
+                            players[i - 1].RoundScore = 0;
+                            players[i].RoundScore = 0;
+                            players[k].RoundScore = 0;
 
-                            }
-                            //Player i has the least score of the round.
-                            else if ((players[i].RoundScore < players[k].RoundScore) && (players[i].RoundScore < players[i - 1].RoundScore))
-                            {
-                                players[i].DiceCount -= 1;
-                                players[i].Dices.Take(players[i].Dices.Count - 1);
-                                players[i - 1].RoundScore = 0;
-                                players[i].RoundScore = 0;
-                                players[k].RoundScore = 0;
-                                Console.WriteLine();
-                            }
-                            //Player (i-1) has the least score of the round.
-                            else if ((players[i - 1].RoundScore < players[k].RoundScore) && (players[i - 1].RoundScore < players[i].RoundScore))
-                            {
-                                players[i - 1].DiceCount -= 1;
-                                players[i - 1].Dices.Take(players[i].Dices.Count - 1);
-                                players[i - 1].RoundScore = 0;
-                                players[i].RoundScore = 0;
-                                players[k].RoundScore = 0;
-                                Console.WriteLine();
-                            }
-
+                        }
+                        //Players k has the least score of the round
+                        else if ((players[i].RoundScore > players[k].RoundScore) && (players[k].RoundScore > players[i - 1].RoundScore))
+                        {
+                            players[k].DiceCount -= 1;
+                            players[k].Dices.Take(players[i].Dices.Count - 1);
+                            players[i - 1].RoundScore = 0;
+                            players[i].RoundScore = 0;
+                            players[k].RoundScore = 0;
                         }
                         else if (players[i].RoundScore.Equals(players[k].RoundScore))
                         {
-                            i++;
-                            k++;
-                            //K has the least of scores 
-                            if (players[i].RoundScore > players[k].RoundScore)
-                            {
-                                players[k].DiceCount -= 1;
-                                players[k].Dices.Take(players[k].Dices.Count - 1);
-                                players[i - 1].RoundScore = 0;
-                                players[i].RoundScore = 0;
-                                players[k].RoundScore = 0;
-                                Console.WriteLine();
-                            }
-                            if (players[i].RoundScore.Equals(players[k].RoundScore))
-                            {
-                                //If it is a tie. Just reset scores
-                                players[i - 1].RoundScore = 0;
-                                players[i].RoundScore = 0;
-                                players[k].RoundScore = 0;
-                                Console.WriteLine();
-                            }
-
-                        }
-                        else if (players[i].RoundScore < players[k].RoundScore)
-                        {
-                            i++;
-                            k++;
-                            //players i has the least score of the round.
-                            if ((players[i].RoundScore < players[k].RoundScore) && (players[i].RoundScore < players[i-1].RoundScore))
-                            {
-                                players[i].DiceCount -= 1;
-                                players[i].Dices.Take(players[i].Dices.Count - 1);
-                                players[i - 1].RoundScore = 0;
-                                players[i].RoundScore = 0;
-                                players[k].RoundScore = 0;
-                                Console.WriteLine();
-
-                            }
-                            //Players k has the least score of the round
-                            else if ((players[i].RoundScore > players[k].RoundScore) && (players[k].RoundScore > players[i - 1].RoundScore))
-                            {
-                                players[k].DiceCount -= 1;
-                                players[k].Dices.Take(players[i].Dices.Count - 1);
-                                players[i - 1].RoundScore = 0;
-                                players[i].RoundScore = 0;
-                                players[k].RoundScore = 0;
-                                Console.WriteLine();
-                            }
-                            else if (players[i].RoundScore.Equals(players[k].RoundScore))
-                            {
-                                //If it is a tie. Just reset scores
-                                players[i - 1].RoundScore = 0;
-                                players[i].RoundScore = 0;
-                                players[k].RoundScore = 0;
-                                Console.WriteLine();
-                            }
+                            //If it is a tie. Just reset scores
+                            players[i - 1].RoundScore = 0;
+                            players[i].RoundScore = 0;
+                            players[k].RoundScore = 0;
                         }
                     }
                     //Player count less than three.
@@ -137,6 +114,7 @@ namespace BluffChallange.Model
                         {
                             players[i].DiceCount -= 1;
                             players[i].Dices.Take(players[i].Dices.Count - 1);
+                            players[i - 1].RoundScore = 0;
                             players[i].RoundScore = 0;
                             players[k].RoundScore = 0;
                         }

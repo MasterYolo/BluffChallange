@@ -42,11 +42,8 @@ namespace BluffChallange
             {
                 sb.AppendLine("\nDices for player : "
                     + i);
-                players[i].Dices = new List<string>();
-                if(players[i].DiceCount == 0)
-                {
 
-                }
+                players[i].Dices = new List<string>();
                 //If it is the first round of a game
                 if (roundCounter.Equals(0))
                 {
@@ -55,6 +52,7 @@ namespace BluffChallange
                     numOfPlayer.Enabled = false;
 
                 }
+
                 for (int j = 0; j < players[i].DiceCount; j++)
                 {
                     players[i].Dices.Add(players[i].rollDice());
@@ -66,11 +64,9 @@ namespace BluffChallange
                 {
                     sb.AppendLine("player : " + i + " has no dices left");
                     Players.Remove(players[i]);
-                    if(players.Count.Equals(1))
-                    {
-                        //Victory
-                    }
                 }
+                    
+
                 game.countRoundScore(players[i]);
                 sb.AppendLine("Player " + i + ". Round score : " + players[i].RoundScore);
                 sb.AppendLine();
