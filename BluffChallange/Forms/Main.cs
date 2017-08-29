@@ -65,8 +65,12 @@ namespace BluffChallange
                     sb.AppendLine("player : " + i + " has no dices left");
                     Players.Remove(players[i]);
                 }
-                    
-
+                
+                if(players.Count <= 1)
+                {
+                    sb.AppendLine("player " + i + " Has won!");
+                    break;
+                }
                 game.countRoundScore(players[i]);
                 sb.AppendLine("Player " + i + ". Round score : " + players[i].RoundScore);
                 sb.AppendLine();
